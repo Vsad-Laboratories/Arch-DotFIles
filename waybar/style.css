@@ -1,0 +1,301 @@
+/*
+ * VSAD WAYBAR
+ * VantaBlack / Aerospace Interface
+ * Transparent • Colorful • Minimal • Technical
+ */
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
+  font-size: 13px;
+  min-height: 0;
+
+  transition-property: background-color, color, border-color;
+  transition-duration: 200ms;
+}
+
+/* =========================================================
+   WAYBAR
+   ========================================================= */
+
+window#waybar {
+  background: rgba(5, 5, 8, 0.55);
+  color: #cdd6f4;
+
+  border: none;
+}
+
+/* =========================================================
+   WORKSPACES
+   ========================================================= */
+
+#workspaces button {
+  padding: 0 8px;
+  margin: 4px 2px;
+
+  color: #585b70;
+  background: transparent;
+
+  border: 1px solid transparent;
+  border-radius: 6px;
+
+  transition: all 200ms ease;
+}
+
+#workspaces button:hover {
+  color: #cba6f7;
+  background: rgba(203, 166, 247, 0.12);
+  border-color: rgba(203, 166, 247, 0.25);
+}
+
+#workspaces button.active {
+  color: #ffffff;
+  background: rgba(203, 166, 247, 0.22);
+  border-color: rgba(203, 166, 247, 0.40);
+
+  font-weight: bold;
+}
+
+#workspaces button.urgent {
+  color: #ffffff;
+  background: rgba(243, 139, 168, 0.20);
+  border-color: rgba(243, 139, 168, 0.45);
+}
+
+/* =========================================================
+   WINDOW TITLE
+   ========================================================= */
+
+#window {
+  color: #9399b2;
+
+  font-style: italic;
+
+  padding: 0 20px;
+  margin: 4px 8px;
+}
+
+#window.empty {
+  color: transparent;
+}
+
+/* =========================================================
+   WIFI
+   ========================================================= */
+
+#custom-wifi {
+  color: #a6e3a1;
+
+  padding: 0 12px;
+  margin: 4px 0 4px 8px;
+
+  background: rgba(166, 227, 161, 0.10);
+  border: 1px solid rgba(166, 227, 161, 0.30);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#custom-wifi:hover {
+  color: #c8f7c2;
+
+  background: rgba(166, 227, 161, 0.20);
+  border-color: rgba(166, 227, 161, 0.55);
+}
+
+/* =========================================================
+   BATTERY
+   ========================================================= */
+
+#custom-battery {
+  color: #89dceb;
+
+  padding: 0 12px;
+  margin: 4px 0 4px 8px;
+
+  background: rgba(137, 220, 235, 0.10);
+  border: 1px solid rgba(137, 220, 235, 0.30);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#custom-battery:hover {
+  color: #b8f1ff;
+
+  background: rgba(137, 220, 235, 0.20);
+  border-color: rgba(137, 220, 235, 0.55);
+}
+
+/* Charging */
+#custom-battery.charging {
+  color: #a6e3a1;
+
+  background: rgba(166, 227, 161, 0.10);
+  border-color: rgba(166, 227, 161, 0.35);
+}
+
+/* Fully charged */
+#custom-battery.full {
+  color: #a6e3a1;
+
+  background: rgba(166, 227, 161, 0.08);
+  border-color: rgba(166, 227, 161, 0.30);
+}
+
+/* Battery warning */
+#custom-battery.warning {
+  color: #f9e2af;
+
+  background: rgba(249, 226, 175, 0.10);
+  border-color: rgba(249, 226, 175, 0.35);
+}
+
+/* Battery critical */
+#custom-battery.critical {
+  color: #f38ba8;
+
+  background: rgba(243, 139, 168, 0.12);
+  border-color: rgba(243, 139, 168, 0.40);
+}
+
+/* Unknown */
+#custom-battery.unknown {
+  color: #7f849c;
+
+  background: rgba(127, 132, 156, 0.08);
+  border-color: rgba(127, 132, 156, 0.20);
+}
+
+/* =========================================================
+   VOLUME
+   ========================================================= */
+
+#custom-volume {
+  color: #cba6f7;
+
+  padding: 0 12px;
+  margin: 4px 4px 4px 0;
+
+  background: rgba(203, 166, 247, 0.10);
+  border: 1px solid rgba(203, 166, 247, 0.30);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#custom-volume:hover {
+  color: #eadcff;
+
+  background: rgba(203, 166, 247, 0.20);
+  border-color: rgba(203, 166, 247, 0.55);
+}
+
+/* =========================================================
+   SYSTEM
+   ========================================================= */
+
+#custom-system {
+  color: #f38ba8;
+
+  padding: 0 12px;
+  margin: 4px 4px 4px 0;
+
+  background: rgba(243, 139, 168, 0.10);
+  border: 1px solid rgba(243, 139, 168, 0.30);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#custom-system:hover {
+  color: #ffb3c7;
+
+  background: rgba(243, 139, 168, 0.20);
+  border-color: rgba(243, 139, 168, 0.55);
+}
+
+/* =========================================================
+   RECORDER
+   ========================================================= */
+
+#custom-recorder {
+  color: #9399b2;
+
+  padding: 0 12px;
+  margin: 4px 4px 4px 0;
+
+  background: rgba(147, 153, 178, 0.08);
+  border: 1px solid rgba(147, 153, 178, 0.20);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#custom-recorder:hover {
+  color: #cba6f7;
+
+  background: rgba(203, 166, 247, 0.12);
+  border-color: rgba(203, 166, 247, 0.30);
+}
+
+#custom-recorder.recording {
+  color: #f38ba8;
+
+  background: rgba(243, 139, 168, 0.12);
+  border: 1px solid rgba(243, 139, 168, 0.35);
+}
+
+#custom-recorder.recording:hover {
+  color: #ffb3c7;
+
+  background: rgba(243, 139, 168, 0.20);
+  border-color: rgba(243, 139, 168, 0.55);
+}
+
+/* =========================================================
+   CLOCK
+   ========================================================= */
+
+#clock {
+  color: #cba6f7;
+
+  font-weight: bold;
+
+  padding: 0 12px;
+  margin: 4px 0;
+
+  background: rgba(203, 166, 247, 0.10);
+  border: 1px solid rgba(203, 166, 247, 0.30);
+  border-radius: 8px;
+
+  transition: all 200ms ease;
+}
+
+#clock:hover {
+  color: #eadcff;
+
+  background: rgba(203, 166, 247, 0.20);
+  border-color: rgba(203, 166, 247, 0.55);
+}
+
+/* =========================================================
+   TOOLTIP
+   ========================================================= */
+
+tooltip {
+  background: rgba(5, 5, 8, 0.92);
+  color: #cdd6f4;
+
+  border: 1px solid rgba(203, 166, 247, 0.30);
+  border-radius: 8px;
+
+  padding: 8px 10px;
+}
+
+tooltip label {
+  color: #cdd6f4;
+}

@@ -1,4 +1,5 @@
 (include "./windows/top-hud.yuck")
+(include "./windows/clock.yuck")
 (include "./widgets/battery.yuck")
 (include "./widgets/cpu.yuck")
 (include "./widgets/brightness.yuck")

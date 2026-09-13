@@ -1,0 +1,80 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 0,
+
+  "modules-left": [
+    "niri/workspaces",
+    "custom/wifi"
+  ],
+  "modules-center": [
+    "niri/window",
+    "clock",
+    "custom/battery"
+  ],
+  "modules-right": [
+    "custom/recorder",
+    "custom/volume",
+    "custom/system"
+  ],
+
+  "niri/workspaces": {
+    "format": "{index}",
+    "current-only": false,
+    "all-outputs": false
+  },
+
+  "niri/window": {
+    "format": "{}",
+    "max-length": 50,
+    "separate-outputs": true
+  },
+
+  "clock": {
+    "format": " {:%H:%M}",
+    "format-alt": " {:%a, %d %b %H:%M:%S}",
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "interval": 1
+  },
+
+  "custom/wifi": {
+    "exec": "bash ~/.config/waybar/scripts/wifi.sh",
+    "return-type": "json",
+    "interval": 10,
+    "tooltip": false
+  },
+
+  "custom/battery": {
+    "exec": "bash ~/.config/waybar/scripts/battery.sh",
+    "return-type": "json",
+    "interval": 30,
+    "tooltip": false
+  },
+
+  "custom/volume": {
+    "exec": "bash ~/.config/waybar/scripts/volume.sh",
+    "return-type": "json",
+    "interval": 5,
+    "on-click": "bash ~/.config/waybar/scripts/volume-control.sh",
+    "on-scroll-up": "bash ~/.config/waybar/scripts/volume-control.sh up",
+    "on-scroll-down": "bash ~/.config/waybar/scripts/volume-control.sh down",
+    "tooltip": true
+  },
+
+  "custom/system": {
+    "exec": "bash ~/.config/waybar/scripts/system.sh",
+    "return-type": "json",
+    "interval": 3,
+    "tooltip": true
+  },
+
+  "custom/recorder": {
+    "exec": "~/.local/bin/waybar-record-status",
+    "return-type": "json",
+    "interval": 1,
+    "on-click": "~/.local/bin/vsad-record",
+    "signal": 1,
+    "tooltip": true
+  }
+}

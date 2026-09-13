@@ -1,5 +1,18 @@
 // VSAD Niri — Window Rules
 
+// Workspace 1: System Monitor (btop)
+window-rule {
+    match app-id="kitty" app-name="btop"
+    open-on-workspace 1
+    maximize true
+}
+
+// Workspace 2: Main Terminal
+window-rule {
+    match app-id="kitty" !app-name="btop"
+    open-on-workspace 2
+}
+
 window-rule {
     match app-id="kitty"
     opacity 0.95

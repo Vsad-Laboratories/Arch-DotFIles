@@ -1,0 +1,40 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "skills": {
+    "directories": [
+      "~/.kilo/skills"
+    ]
+  },
+  "permission": {
+    "bash": {
+      "find *": "allow",
+      "head *": "allow",
+      "which *": "allow",
+      "niri *": "allow",
+      "echo *": "allow",
+      "waybar *": "allow",
+      "grep *": "allow",
+      "strings *": "allow",
+      "ghostty *": "allow",
+      "pacman *": "allow",
+      "systemctl status *": "allow",
+      "iwctl *": "allow",
+      "pactl *": "allow",
+      "upower *": "allow",
+      "timeout *": "allow",
+      "true *": "allow",
+      "/home/Vsad/.config/waybar/scripts/network.sh *": "allow",
+      "bash *": "allow",
+      "tail *": "allow",
+      "sudo *": "allow"
+    },
+    "external_directory": {
+      "/sys/class/net/wlan0/*": "allow",
+      "/proc/*": "allow",
+      "/etc/*": "allow"
+    },
+    "*": {
+      "*": "allow"
+    }
+  }
+}

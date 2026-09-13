@@ -1,0 +1,35 @@
+// VSAD Clock Window Styles
+// Minimal clock widget for Workspace 2
+
+// Colors
+$bg-primary: rgba(0, 0, 0, 0.75);
+$border-color: #1F1F2E;
+$text-primary: #E2E8F0;
+$text-secondary: #71717A;
+
+// Typography
+$font-family: "Maple Mono NF";
+
+// Clock Window Container
+.clock-window {
+  background: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-family: $font-family;
+  color: $text-primary;
+}
+
+// Clock Time
+.clock-time {
+  color: $text-primary;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+// Clock Date
+.clock-date {
+  color: $text-secondary;
+  font-size: 10px;
+  margin-top: 2px;
+}

@@ -86,3 +86,11 @@ desktop.ini
 *.token
 *secret*
 *password*
+
+# ---------- App-Specific Skips ----------
+opencode/node_modules/
+opencode/package*.json
+opencode/plugins/
+waybar/scripts/
+systemd/user/
+Thunar/accels.scm

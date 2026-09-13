@@ -1,0 +1,14 @@
+(defwindow clock-window
+  :stacking "bg"
+  :geometry
+    (geometry
+      :x "24px"
+      :y "24px"
+      :width "200px"
+      :height "80px"
+      :anchor "bottom left"
+    )
+  :exclusive false
+  :focusable false
+  :monitor 0
+  (clock))

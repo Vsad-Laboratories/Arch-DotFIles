@@ -3,3 +3,15 @@
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "waybar"
 spawn-sh-at-startup "~/.local/bin/vsad-wallpaper"
+
+// Boot State: Workspace 1 (System) - Kitty with btop
+spawn-at-startup "kitty" "--class" "btop" "-e" "btop"
+
+// Boot State: Workspace 2 (Main) - Clean terminal
+spawn-at-startup "kitty"
+
+// Boot State: Eww clock widget for Workspace 2
+spawn-at-startup "eww" "open" "clock-window"
+
+// Focus Workspace 2 after boot (delayed to allow windows to spawn)
+spawn-sh-at-startup "sleep 2 && niri msg action focus-workspace 2"
