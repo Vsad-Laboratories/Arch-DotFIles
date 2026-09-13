@@ -72,7 +72,7 @@ binds {
 
     // Window sizing
     Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { reload-config; }
+    Mod+Shift+R { load-config-file; }
     Mod+Shift+W { switch-preset-column-width-back; }
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
