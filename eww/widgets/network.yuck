@@ -1,0 +1,4 @@
+(defvar NET_STATUS "ONLINE")
+
+(defwidget network ()
+  (label :class "network" :text (format "NET // {}" NET_STATUS)))

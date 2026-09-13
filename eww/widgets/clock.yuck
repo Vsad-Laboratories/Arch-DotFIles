@@ -1,0 +1,7 @@
+(defvar TIME_STR "00:00")
+(defvar DATE_STR "01 JAN 1970")
+
+(defwidget clock ()
+  (box :class "clock" :orientation "vertical" :space-evenly false :halign "center" :valign "center"
+    (label :class "clock-time" :text TIME_STR)
+    (label :class "clock-date" :text DATE_STR)))

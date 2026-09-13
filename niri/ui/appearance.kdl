@@ -1,0 +1,16 @@
+// VSAD Niri — Appearance
+// VantaBlack visual language
+
+layout {
+    focus-ring {
+        width 0
+    }
+
+    border {
+        off
+    }
+
+    shadow {
+        off
+    }
+}

@@ -1,0 +1,56 @@
+# Yazi general configuration.
+# Merged over Yazi defaults. Full open/openers are listed so everything is explicit.
+
+[opener]
+edit = [
+	{ run = "nvim %s", desc = "$EDITOR (LazyVim)", for = "unix", block = true },
+]
+view = [
+	{ run = "bat --color=always --paging=always %s", desc = "View (bat)", for = "unix", block = true },
+]
+play = [
+	{ run = "xdg-open %s1",    desc = "Play", for = "linux", orphan = true },
+	{ run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
+]
+open = [
+	{ run = "xdg-open %s1",    desc = "Open", for = "linux" },
+]
+reveal = [
+	{ run = "xdg-open %d1",         desc = "Reveal", for = "linux" },
+	{ run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
+]
+extract = [
+	{ run = "ya pub extract --list %s", desc = "Extract here" },
+]
+download = [
+	{ run = "ya emit download --open %S", desc = "Download and open" },
+	{ run = "ya emit download %S",        desc = "Download" },
+]
+trash = [
+	{ run = "ya pub trash-restore --list %S", desc = "Restore selected files" },
+	{ run = "ya pub trash-empty --list %S",   desc = "Empty trash bin" },
+]
+
+[open]
+rules = [
+	# Text: peek with bat (block pager). Edit with LazyVim only via Open-with (e/E).
+	{ mime = "text/*", use = [ "view", "edit", "reveal" ] },
+	# Image
+	{ mime = "image/*", use = [ "open", "reveal" ] },
+	# Media
+	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
+	# Code
+	{ mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = [ "view", "edit", "reveal" ] },
+	# Archive
+	{ mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [ "extract", "reveal" ] },
+	# Empty file
+	{ mime = "inode/empty", use = [ "view", "edit", "reveal" ] },
+	# PDF / documents -> system handler (zathura)
+	{ mime = "application/pdf", use = [ "open", "reveal" ] },
+	# Virtual file system
+	{ mime = "vfs/{absent,stale}", use = "download" },
+	# Trash
+	{ mime = "trash/**", use = [ "open", "trash" ] },
+	# Fallback
+	{ url = "*", use = [ "open", "reveal" ] },
+]

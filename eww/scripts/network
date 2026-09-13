@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# network - Get network status
+IFACE="wlan0"
+while true; do
+    if ip link show "$IFACE" 2>/dev/null | grep -q "state UP"; then
+        echo "ONLINE"
+    else
+        echo "OFFLINE"
+    fi
+    sleep 5
+done

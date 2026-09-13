@@ -1,0 +1,5 @@
+(defvar BRI_LEVEL 100)
+
+(defwidget brightness ()
+  (scale :class "brightness-slider" :min 0 :max 100 :active true :value BRI_LEVEL
+         :onchange "brightnessctl set {}%"))

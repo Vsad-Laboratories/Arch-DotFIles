@@ -1,0 +1,4 @@
+(defvar SYS_STATUS "OK")
+
+(defwidget status ()
+  (label :class "status" :text (format "SYS // {}" SYS_STATUS)))

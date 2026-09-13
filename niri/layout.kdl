@@ -1,0 +1,21 @@
+
+// VSAD Niri — Layout & Ribbon Configuration
+// ========================================================
+
+layout {
+    // "never" ensures focused columns don't aggressively lock down or snap
+    center-focused-column "never"
+
+    // Set standard window proportions so new views remain wide and readable
+    default-column-width { proportion 0.50; }
+
+    // Clean spacing for terminal readability and desktop ricing
+    gaps 10
+
+    // Preset widths you can cycle through using Mod+R
+    preset-column-widths {
+        proportion 0.33
+        proportion 0.50
+        proportion 0.66
+    }
+}

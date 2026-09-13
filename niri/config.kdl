@@ -1,0 +1,29 @@
+// VSAD Niri — Configuration Controller
+// Aerospace Desktop Environment — Wayland/Niri
+//
+// This file is the entry point. It includes modular configuration files.
+// Do not put detailed configuration here — use the modules/ and ui/ directories.
+// ==================== Global Settings ====================
+
+prefer-no-csd
+
+// Screenshot path
+screenshot-path "~/Pictures/ScreenShots/screenshot_%Y-%m-%d_%H-%M-%S.png"
+
+// Skip the hotkey overlay popup at startup
+hotkey-overlay {
+    skip-at-startup
+}
+
+// ==================== Modules ====================
+include "modules/input.kdl"
+include "modules/keybinds.kdl"
+include "modules/rules.kdl"
+include "modules/startup.kdl"
+
+// ==================== UI ====================
+include "ui/appearance.kdl"
+include "ui/layout.kdl"
+include "ui/animations.kdl"
+
+

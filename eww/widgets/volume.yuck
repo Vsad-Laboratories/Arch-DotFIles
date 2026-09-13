@@ -1,0 +1,9 @@
+(defvar VOL_LEVEL 48)
+(defvar VOL_MUTED false)
+
+(defwidget volume ()
+  (box :class "volume" :orientation "horizontal" :space-evenly false :space 4
+    (label :class "vol-icon" :text (if VOL_MUTED "M" "V"))
+    (scale :class "vol-slider" :min 0 :max 100 :active true :value VOL_LEVEL
+           :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")
+    (label :class "vol-pct" :text (format "{}%" VOL_LEVEL))))

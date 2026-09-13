@@ -1,0 +1,64 @@
+# =============================================
+# Starship prompt — Vanta Black theme
+# =============================================
+
+format = """
+$os\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$python\
+$rust\
+$nodejs\
+$cmd_duration\
+$line_break\
+$character"""
+
+[os]
+disabled = false
+style = "bold cyan"
+format = "[$symbol]($style) "
+
+[hostname]
+ssh_only = true
+style = "bold yellow"
+format = "@[$hostname]($style) "
+
+[directory]
+style = "bold blue"
+truncation_length = 3
+truncation_symbol = ".../"
+read_only = ""
+format = "[$path]($style)[$read_only]($style) "
+
+[git_branch]
+format = " [$symbol$branch]($style) "
+symbol = " "
+style = "bold magenta"
+
+[git_status]
+style = "bold yellow"
+format = "[$all_status$ahead_behind]($style) "
+
+[python]
+format = " [$symbol($version)]($style) "
+style = "bold green"
+
+[rust]
+format = " [$symbol($version)]($style) "
+style = "bold green"
+
+[nodejs]
+format = " [$symbol($version)]($style) "
+style = "bold green"
+
+[cmd_duration]
+min_time = 2000
+format = " took [$duration]($style) "
+style = "bold yellow"
+
+[character]
+success_symbol = "[Vsad](green) > "
+error_symbol = "[Vsad](red) > "
+vimcmd_symbol = "[Vsad](purple) > "

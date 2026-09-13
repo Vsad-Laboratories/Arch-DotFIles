@@ -1,0 +1,21 @@
+(defwidget top-hud ()
+  (box :class "top-hud" :orientation "horizontal" :space-evenly false :halign "center" :valign "center"
+    (brand)
+    (separator)
+    (battery)
+    (separator)
+    (brightness)
+    (spacer)
+    (clock)
+    (spacer)
+    (volume)
+    (separator)
+    (network)
+    (separator)
+    (status)))
+
+(defwidget separator ()
+  (label :class "separator" :text "│"))
+
+(defwidget spacer ()
+  (label :class "spacer" :text " "))

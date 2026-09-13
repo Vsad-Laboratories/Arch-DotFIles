@@ -1,0 +1,143 @@
+// VSAD Top HUD Styles
+// VantaBlack aerospace instrumentation
+
+// Colors
+$bg-primary: rgba(0, 0, 0, 0.88);
+$bg-surface: #0A0A0C;
+$border-color: #1F1F2E;
+$text-primary: #E2E8F0;
+$text-secondary: #71717A;
+$text-muted: #94A3B8;
+$accent-purple: #8B5CF6;
+$accent-blue: #3B82F6;
+$status-ok: #10B981;
+$status-warn: #F59E0B;
+$status-error: #EF4444;
+
+// Typography
+$font-family: "Maple Mono NF";
+$font-size-sm: 9px;
+$font-size-md: 10px;
+$font-size-lg: 12px;
+
+// Top HUD Container
+.top-hud {
+  background: $bg-primary;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 0 12px;
+  font-family: $font-family;
+  font-size: $font-size-md;
+  color: $text-primary;
+  min-width: 800px;
+  min-height: 28px;
+}
+
+// Brand Zone
+.brand {
+  color: $accent-purple;
+  font-weight: bold;
+  font-size: $font-size-lg;
+  padding-right: 8px;
+}
+
+.brand-text {
+  color: $accent-purple;
+}
+
+.brand-os {
+  color: $text-muted;
+  font-size: $font-size-sm;
+}
+
+// Battery
+.battery {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+.battery-pct {
+  color: $text-primary;
+  min-width: 32px;
+}
+
+.battery-state {
+  color: $text-muted;
+  font-size: $font-size-sm;
+}
+
+// CPU
+.cpu {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+// Brightness
+.brightness-slider {
+  min-width: 60px;
+  color: $accent-blue;
+}
+
+// Clock
+.clock {
+  padding: 0 16px;
+}
+
+.clock-time {
+  color: $text-primary;
+  font-size: $font-size-lg;
+  font-weight: bold;
+}
+
+.clock-date {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+  margin-top: -2px;
+}
+
+// Volume
+.volume {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+.vol-slider {
+  min-width: 60px;
+  color: $accent-purple;
+}
+
+.vol-pct {
+  color: $text-primary;
+  min-width: 32px;
+}
+
+.vol-icon {
+  font-size: $font-size-md;
+}
+
+// Network
+.network {
+  color: $text-secondary;
+  font-size: $font-size-sm;
+}
+
+.net-label {
+  color: $status-ok;
+}
+
+// Status
+.status {
+  color: $status-ok;
+  font-size: $font-size-sm;
+}
+
+// Separators
+.separator {
+  color: $border-color;
+  font-size: $font-size-md;
+  padding: 0 4px;
+}
+
+.spacer {
+  min-width: 8px;
+}

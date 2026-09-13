@@ -1,0 +1,7 @@
+(defvar BAT_CAPACITY 100)
+(defvar BAT_STATUS "Full")
+
+(defwidget battery ()
+  (box :class "battery" :orientation "horizontal" :space-evenly false :space 4
+    (label :class "battery-pct" :text (format "{}%" BAT_CAPACITY))
+    (label :class "battery-state" :text BAT_STATUS)))

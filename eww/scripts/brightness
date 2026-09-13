@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# brightness - Get brightness level
+while true; do
+    echo $(brightnessctl --percentage get 2>/dev/null || echo "0")
+    sleep 2
+done

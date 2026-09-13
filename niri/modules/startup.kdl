@@ -1,0 +1,5 @@
+// VSAD Niri — Startup Processes
+
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "waybar"
+spawn-sh-at-startup "~/.local/bin/vsad-wallpaper"

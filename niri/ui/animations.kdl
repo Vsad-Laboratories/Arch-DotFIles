@@ -1,0 +1,6 @@
+// VSAD Niri — Animations
+// Minimal and fast
+
+animations {
+    slowdown 0.8
+}

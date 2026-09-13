@@ -1,0 +1,4 @@
+(defvar CPU_USAGE 0)
+
+(defwidget cpu ()
+  (label :class "cpu" :text (format "SYS.CPU // {}%" CPU_USAGE)))

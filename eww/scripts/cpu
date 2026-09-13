@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# cpu - Get CPU usage
+while true; do
+    echo $(top -bn1 | grep "Cpu(s)" | awk "{print \$2}")
+    sleep 1
+done

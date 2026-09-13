@@ -1,0 +1,4 @@
+(defwidget brand ()
+  (box :class "brand" :orientation "horizontal" :space-evenly false :space 4
+    (label :class "brand-text" :text "VSAD")
+    (label :class "brand-os" :text "// OS")))

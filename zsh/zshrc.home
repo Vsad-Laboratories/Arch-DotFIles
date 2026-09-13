@@ -1,0 +1,129 @@
+# ==================== ZSH Config ====================
+# Managed: ~/.config/vsad/config/shell.md
+
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.opencode/bin:$PATH"
+export TERMINAL=kitty
+export EDITOR=nvim
+export VISUAL=nvim
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Rust (rustup/cargo)
+export RUSTUP_HOME="$HOME/.rustup"
+export CARGO_HOME="$HOME/.cargo"
+export PATH="$CARGO_HOME/bin:$PATH"
+
+# Aliases
+alias ls='ls --color=auto'
+alias ll='ls -lah'
+alias grep='grep --color=auto'
+alias bt='btop'
+alias edit='nvim'
+
+# Starship Prompt — before plugins so zle hooks get set up first
+eval "$(starship init zsh)"
+
+# Syntax Highlighting Colors — Catppuccin Mocha
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+# === Commands & Functions ===
+ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e3a1,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=#89dceb,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=#89b4fa,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#cba6f7,bold'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=#cba6f7,bold,underline'
+ZSH_HIGHLIGHT_STYLES[suffix-alias]='fg=#cba6f7,bold'
+ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#f9e2af,bold'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e3a1,underline'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=#a6e3a1,bold'
+
+# === Arguments & Strings ===
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#f9e2af'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[rc-quote]='fg=#f9e2af,bold'
+
+# === Quoted Command Arguments (escape sequences) ===
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=#fab387'
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]='fg=#fab387'
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]='fg=#fab387'
+
+# === Delimiters ===
+ZSH_HIGHLIGHT_STYLES[command-substitution-delimiter]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument-delimiter]='fg=#cdd6f4'
+ZSH_HIGHLIGHT_STYLES[process-substitution-delimiter]='fg=#cdd6f4'
+
+# === Paths & Files ===
+ZSH_HIGHLIGHT_STYLES[path]='fg=#89dceb,underline'
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]='fg=#89dceb,bold,underline'
+ZSH_HIGHLIGHT_STYLES[path_prefix_pathseparator]='fg=#89dceb,underline'
+
+# === Options ===
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#f38ba8'
+
+# === Subshells & Process Substitution ===
+ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[process-substitution]='fg=#a6e3a1'
+ZSH_HIGHLIGHT_STYLES[numeric-fd]='fg=#cba6f7'
+ZSH_HIGHLIGHT_STYLES[named-fd]='fg=#cba6f7'
+
+# === Assignment & Redirection ===
+ZSH_HIGHLIGHT_STYLES[assign]='fg=#cba6f7,bold'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=#fab387,bold'
+
+# === Separators & Syntax ===
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=#585b70,bold'
+ZSH_HIGHLIGHT_STYLES[globbing]='fg=#f38ba8'
+ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=#f38ba8,bold'
+
+# === Errors & Bracket Matching ===
+ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f38ba8,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-error]='fg=#f38ba8,bold'
+ZSH_HIGHLIGHT_STYLES[cursor-matchingbracket]='fg=#a6e3a1,bold,underline'
+
+# === Comments ===
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#6c7086,italic'
+
+# === Default ===
+ZSH_HIGHLIGHT_STYLES[default]='fg=#cdd6f4'
+
+# === Bracket Highlighting (brackets highlighter) ===
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=#89b4fa,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=#a6e3a1,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=#cba6f7,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=#f9e2af,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-5]='fg=#89dceb,bold'
+
+# Enable main + brackets highlighters
+ZSH_HIGHLIGHTERS=(main brackets)
+
+# ZSH Plugins — AFTER starship, syntax-highlighting last
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Kitty Shell Integration (syncs cwd/env between terminal shell and Yazi etc.)
+if [[ $TERM == "xterm-kitty" || -n "$KITTY_WINDOW_ID" ]]; then
+    builtin autoload -Uz -- "$HOME/.local/share/kitty/kitty-integration" 2>/dev/null || \
+        builtin autoload -Uz -- /usr/lib/kitty/shell-integration/zsh/kitty.zsh 2>/dev/null || true
+    builtin source /usr/lib/kitty/shell-integration/zsh/kitty.zsh 2>/dev/null
+fi
+
+# Yazi wrapper to change directory on exit
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+# kilo
+export PATH=/home/Vsad/.kilo/bin:$PATH
+
+# Add USB tools directory to PATH if mounted
+if [ -d "/mnt/usb/bin" ]; then
+    export PATH="$PATH:/mnt/usb/bin"
+fi

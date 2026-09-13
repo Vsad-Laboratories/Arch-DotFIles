@@ -1,0 +1,15 @@
+(defwindow top-hud
+  :stacking "bg"
+  :geometry 
+    (geometry
+      :x "0"
+      :y "6px"
+      :width "820px"
+      :height "32px"
+      :anchor "top center"
+    )
+  :reserve (struts "center" "top" "32px")
+  :exclusive false
+  :focusable false
+  :monitor 0
+  (top-hud))

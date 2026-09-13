@@ -1,0 +1,15 @@
+
+// VSAD Niri — Startup Services Daemon Configuration
+// ========================================================
+
+// Bridge for legacy X11 utilities to function seamlessly
+spawn-at-startup "xwayland-satellite"
+
+// Renders your downloaded monochrome JDM wallpaper natively via GPU
+spawn-at-startup "swaybg" "-i" "~/Pictures/your-pinterest-wallpaper.png" "-m" "fill"
+
+// Notification daemon
+spawn-at-startup "mako"
+
+// Preservation of your custom VSAD Eww widget suite
+spawn-at-startup "eww" "open" "vsad-bar"

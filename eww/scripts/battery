@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# battery - Get battery status
+while true; do
+    capacity=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -1 || echo "0")
+    status=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -1 || echo "N/A")
+    echo "${capacity}|${status}"
+    sleep 10
+done

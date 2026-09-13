@@ -1,0 +1,88 @@
+# =============================================
+# ArchDotFiles .gitignore
+# =============================================
+
+# ---------- SSH Keys ----------
+.ssh/
+
+# ---------- GPG Keys ----------
+.gnupg/
+
+# ---------- Browser Data (cookies, certs, sessions) ----------
+zen/*/cookies.sqlite*
+zen/*/cert9.db
+zen/*/key4.db
+zen/*/sessionstore*
+zen/*/content-prefs.sqlite*
+zen/*/AlternateServices.bin
+zen/*/bounce-tracking-protection.sqlite
+zen/*/storage/
+zen/*/weave/
+zen/*/thumbnails/
+zen/*/safebrowsing/
+zen/*/cache2/
+zen/*/startupCache*
+zen/*/budgetdata.sqlite
+zen/*/gmp-widevinecdm/
+zen/*/gmp-gmpopenh264/
+zen/*/symbols.sqlite
+
+# ---------- History & State Files ----------
+.zsh_history
+.zsh_sessions/
+.python_history
+.node_repl_history
+.bash_history
+.local/state/zsh/
+
+# ---------- X11 Auth & Session ----------
+.Xauthority
+.xsession-errors
+.xsession-errors.old
+
+# ---------- Cache ----------
+.cache/
+local/share/Trash/
+
+# ---------- Build Artifacts ----------
+*.o
+*.ko
+*.a
+*.so
+*.dylib
+*.out
+*.app
+*.exe
+*.dll
+*.pyc
+__pycache__/
+node_modules/
+target/
+build/
+dist/
+
+# ---------- Editor & IDE ----------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# ---------- OS Files ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Misc ----------
+*.log
+*.bak
+*.backup
+*.orig
+*.rej
+.env
+.env.*
+*.token
+*secret*
+*password*

@@ -1,0 +1,31 @@
+// =======================================================
+// VSAD Niri — Input Configuration
+// Keyboard, touchpad, mouse settings
+// =======================================================
+
+input {
+    keyboard {
+        repeat-rate 35
+        repeat-delay 235
+        xkb {
+            // Inherit from system locale settings
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+        // Defaults are fine
+    }
+
+    // Left-click window drag modifiers are active natively via Mod key binding
+    focus-follows-mouse
+
+    // Warp mouse to center of newly focused window
+    warp-mouse-to-focus
+}
+

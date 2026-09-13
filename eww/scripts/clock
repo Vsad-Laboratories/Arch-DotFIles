@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# clock - Get time and date
+while true; do
+    date +"%H:%M|%d %b %Y"
+    sleep 1
+done

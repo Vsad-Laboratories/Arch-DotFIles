@@ -1,0 +1,19 @@
+
+// VSAD Niri — Input & Touchpad Configuration
+// ========================================================
+
+input {
+    keyboard { xkb { layout "us"; }; }
+    touchpad {
+        tap;
+        dwt; // Disable-while-typing to prevent cursor jumping
+        natural-scroll;
+    }
+}
+
+gestures {
+    // Enables continuous 3-finger continuous tracking to scroll the screen
+    three-finger-swipe-horizontal {
+        do-action;
+    }
+}
