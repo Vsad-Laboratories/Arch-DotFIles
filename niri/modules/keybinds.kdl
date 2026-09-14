@@ -23,6 +23,7 @@ binds {
 
     // ==================== Recording ====================
     Mod+G { spawn "vsad-record"; }
+    Mod+Alt+G { spawn "vsad-record" "--menu"; }
 
     // ==================== Overview ====================
     Mod+O repeat=false { toggle-overview; }

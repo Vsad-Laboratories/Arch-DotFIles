@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # vsad-record — VSAD Screen Recorder for Niri/Wayland
-# MOD+G toggle: recording state indicator in Waybar
+# MOD+G: toggle recording (focused window)
+# MOD+Alt+G: fuzzel menu (choose recording mode)
 
-set -euo pipefail
+set -uo pipefail
 
 OUTDIR="$HOME/Videos/Captures"
 PID_FILE="/tmp/vsad-record.pid"
@@ -40,13 +41,23 @@ stop_recording() {
     fi
     kill -INT "$pid" 2>/dev/null
     local waited=0
-    while kill -0 "$pid" 2>/dev/null && [ "$waited" -lt 10 ]; do
+    while kill -0 "$pid" 2>/dev/null && [ "$waited" -lt 30 ]; do
         sleep 0.1
         waited=$((waited + 1))
     done
     kill -0 "$pid" 2>/dev/null && kill -TERM "$pid" 2>/dev/null
     rm -f "$PID_FILE"
-    notify "Recording Stopped" "Saved to ~/Videos/Captures/" -t 3000
+
+    local latest
+    latest=$(ls -t "$OUTDIR"/recording_* 2>/dev/null | head -1)
+    local size=$(stat -c%s "$latest" 2>/dev/null || echo 0)
+    if [[ "$size" -gt 1000 ]]; then
+        local mins=$(($(date +%s) - $(stat -c%Y "$latest")))
+        notify "Recording Stopped" "$(basename "$latest")" -t 3000
+    else
+        notify "Recording Stopped" "File too small, discarding" -t 2000
+        rm -f "$latest" 2>/dev/null
+    fi
     signal_waybar
 }
 
@@ -61,15 +72,34 @@ get_focused_geometry() {
     echo "$GAPS,$((WAYBAR_HEIGHT + GAPS)) ${w}x${h}"
 }
 
-check_deps() {
-    local missing=()
-    command -v wf-recorder >/dev/null || missing+=("wf-recorder")
-    command -v jq >/dev/null || missing+=("jq")
-    if [ ${#missing[@]} -gt 0 ]; then
-        notify "Missing: ${missing[*]}"
+start_recording() {
+    local geometry="$1"
+    local label="$2"
+
+    TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
+    OUTPUT="$OUTDIR/recording_${TIMESTAMP}.mp4"
+
+    ARGS=(-f "$OUTPUT" -c libx264 -r 30 --pixel-format yuv420p)
+    [[ -n "$geometry" ]] && ARGS+=(-g "$geometry")
+
+    setsid wf-recorder "${ARGS[@]}" </dev/null >/dev/null 2>&1 &
+    RECORDER_PID=$!
+    echo "$RECORDER_PID" > "$PID_FILE"
+
+    sleep 1
+    if kill -0 "$RECORDER_PID" 2>/dev/null; then
+        notify "Recording Started" "$label — MOD+G to stop" -t 2000
+        signal_waybar
+    else
+        rm -f "$PID_FILE"
+        notify "Recording Failed" "Could not start" -t 3000
         exit 1
     fi
 }
+
+# Check dependencies
+command -v wf-recorder >/dev/null || { notify "Missing" "wf-recorder"; exit 1; }
+command -v jq >/dev/null || { notify "Missing" "jq"; exit 1; }
 
 # Toggle: stop if already recording
 if is_recording; then
@@ -77,28 +107,32 @@ if is_recording; then
     exit 0
 fi
 
-check_deps
+# MOD+Alt+G: show fuzzel menu
+if [[ "${1:-}" == "--menu" ]]; then
+    command -v fuzzel >/dev/null || { notify "Missing" "fuzzel"; exit 1; }
 
-# Default: record focused window (MOD+G simple toggle)
-GEOMETRY=$(get_focused_geometry)
+    CHOSEN=$(printf "Focused Window\nScreen Region\nFull Screen" | \
+        fuzzel --dmenu --prompt="Record → " --width=30 --lines=5 2>/dev/null) || exit 0
+    [[ -z "$CHOSEN" ]] && exit 0
 
-TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
-OUTPUT="$OUTDIR/recording_${TIMESTAMP}.mp4"
-
-ARGS=(-f "$OUTPUT" -c h264_vaapi -d /dev/dri/renderD128)
-[[ -n "$GEOMETRY" ]] && ARGS+=(-g "$GEOMETRY")
-
-wf-recorder "${ARGS[@]}" &
-RECORDER_PID=$!
-echo "$RECORDER_PID" > "$PID_FILE"
-disown "$RECORDER_PID"
-
-sleep 0.2
-if kill -0 "$RECORDER_PID" 2>/dev/null; then
-    notify "Recording Started" "Press MOD+G to stop" -t 2000
-    signal_waybar
-else
-    rm -f "$PID_FILE"
-    notify "Recording Failed" "Could not start wf-recorder" -t 3000
-    exit 1
+    case "$CHOSEN" in
+        *"Focused Window"*)
+            GEOMETRY=$(get_focused_geometry)
+            start_recording "$GEOMETRY" "Focused Window"
+            ;;
+        *"Screen Region"*)
+            command -v slurp >/dev/null || { notify "Missing" "slurp"; exit 1; }
+            GEOMETRY=$(slurp 2>/dev/null) || exit 0
+            [[ -z "$GEOMETRY" ]] && exit 0
+            start_recording "$GEOMETRY" "Screen Region"
+            ;;
+        *"Full Screen"*)
+            start_recording "" "Full Screen"
+            ;;
+    esac
+    exit 0
 fi
+
+# Default (MOD+G): record focused window
+GEOMETRY=$(get_focused_geometry)
+start_recording "$GEOMETRY" "Focused Window"
