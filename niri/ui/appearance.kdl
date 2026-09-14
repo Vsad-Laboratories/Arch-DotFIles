@@ -16,3 +16,8 @@ layout {
         off
     }
 }
+
+// Make all windows transparent — no background drawn behind them
+window-rule {
+    draw-border-with-background false
+}

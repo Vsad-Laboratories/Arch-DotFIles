@@ -133,6 +133,7 @@ binds {
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Comma  { consume-window-into-column; }
+    // MOD+Period = emoji picker (see Applications section)
 
     // ==================== Column Width ====================
     Mod+R { switch-preset-column-width; }
