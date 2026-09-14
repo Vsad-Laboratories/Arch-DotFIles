@@ -1,8 +1,7 @@
 // VSAD Niri — Startup Processes
 
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "waybar"
-spawn-sh-at-startup "~/.local/bin/vsad-wallpaper"
+// Main startup script
+spawn-sh-at-startup "~/.config/niri/scripts/startup.sh"
 
 // Boot State: Workspace 1 (System) - Kitty with btop
 spawn-at-startup "kitty" "--class" "btop" "-e" "btop"
