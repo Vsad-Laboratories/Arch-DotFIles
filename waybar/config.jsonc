@@ -5,16 +5,16 @@
   "spacing": 0,
 
   "modules-left": [
-    "niri/workspaces",
-    "custom/wifi"
+    "custom/recorder",
+    "niri/workspaces"
   ],
   "modules-center": [
-    "niri/window",
-    "clock",
-    "custom/battery"
+    "niri/window"
   ],
   "modules-right": [
-    "custom/recorder",
+    "custom/wifi",
+    "clock",
+    "custom/battery",
     "custom/volume",
     "custom/system"
   ],
@@ -32,24 +32,24 @@
   },
 
   "clock": {
-    "format": " {:%H:%M}",
-    "format-alt": " {:%a, %d %b %H:%M:%S}",
-    "tooltip-format": "<tt>{calendar}</tt>",
-    "interval": 1
+    "format": " {:%B %d, %Y}",
+    "format-alt": " {:%H:%M:%S}",
+    "tooltip-format": "<tt>{:%A, %B %d, %Y}</tt>",
+    "interval": 60
   },
 
   "custom/wifi": {
     "exec": "bash ~/.config/waybar/scripts/wifi.sh",
     "return-type": "json",
     "interval": 10,
-    "tooltip": false
+    "tooltip": true
   },
 
   "custom/battery": {
     "exec": "bash ~/.config/waybar/scripts/battery.sh",
     "return-type": "json",
     "interval": 30,
-    "tooltip": false
+    "tooltip": true
   },
 
   "custom/volume": {

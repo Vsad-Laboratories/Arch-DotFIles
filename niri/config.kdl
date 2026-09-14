@@ -5,6 +5,14 @@
 // Do not put detailed configuration here — use the modules/ and ui/ directories.
 // ==================== Global Settings ====================
 
+// Named workspaces (required for open-on-workspace window rules)
+workspace "1"
+workspace "2"
+workspace "3"
+workspace "4"
+workspace "5"
+workspace "6"
+
 prefer-no-csd
 
 // Screenshot path

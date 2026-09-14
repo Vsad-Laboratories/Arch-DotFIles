@@ -1,31 +1,18 @@
 // VSAD Niri — Window Rules
 
 // Workspace 1: System Monitor (btop)
+// kitty --class sets the Wayland app-id to "btop"
 window-rule {
-    match app-id="kitty" app-name="btop"
-    open-on-workspace 1
-    maximize true
+    match app-id="^btop$"
+    open-on-workspace "1"
+    open-maximized true
 }
 
-// Workspace 2: Main Terminal
-window-rule {
-    match app-id="kitty" !app-name="btop"
-    open-on-workspace 2
-}
-
-window-rule {
-    match app-id="kitty"
-    opacity 0.95
-}
+// No open-on-workspace for kitty — opens on current workspace
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-window-rule {
-    match app-id="thunar"
-    opacity 0.98
 }
 
 window-rule {

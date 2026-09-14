@@ -1,7 +1,7 @@
 /*
  * VSAD WAYBAR
  * VantaBlack / Aerospace Interface
- * Transparent • Colorful • Minimal • Technical
+ * Transparent • Minimal • Clean
  */
 
 /* =========================================================
@@ -10,11 +10,8 @@
 
 * {
   font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
-  font-size: 13px;
+  font-size: 12px;
   min-height: 0;
-
-  transition-property: background-color, color, border-color;
-  transition-duration: 200ms;
 }
 
 /* =========================================================
@@ -22,60 +19,56 @@
    ========================================================= */
 
 window#waybar {
-  background: rgba(5, 5, 8, 0.55);
+  background: rgba(5, 5, 8, 0.60);
   color: #cdd6f4;
-
   border: none;
 }
 
 /* =========================================================
-   WORKSPACES
+   WORKSPACES — Compact dots
    ========================================================= */
 
+#workspaces {
+  margin: 4px 0 4px 6px;
+}
+
 #workspaces button {
-  padding: 0 8px;
-  margin: 4px 2px;
+  padding: 2px 6px;
+  margin: 0 1px;
+  min-width: 18px;
 
-  color: #585b70;
+  color: #45475a;
   background: transparent;
+  border: none;
+  border-radius: 4px;
 
-  border: 1px solid transparent;
-  border-radius: 6px;
-
-  transition: all 200ms ease;
+  font-size: 11px;
 }
 
 #workspaces button:hover {
   color: #cba6f7;
-  background: rgba(203, 166, 247, 0.12);
-  border-color: rgba(203, 166, 247, 0.25);
+  background: rgba(203, 166, 247, 0.10);
 }
 
 #workspaces button.active {
   color: #ffffff;
-  background: rgba(203, 166, 247, 0.22);
-  border-color: rgba(203, 166, 247, 0.40);
-
+  background: rgba(203, 166, 247, 0.15);
   font-weight: bold;
 }
 
 #workspaces button.urgent {
-  color: #ffffff;
-  background: rgba(243, 139, 168, 0.20);
-  border-color: rgba(243, 139, 168, 0.45);
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.15);
 }
 
 /* =========================================================
-   WINDOW TITLE
+   WINDOW TITLE — Centered
    ========================================================= */
 
 #window {
-  color: #9399b2;
-
+  color: #6c7086;
   font-style: italic;
-
-  padding: 0 20px;
-  margin: 4px 8px;
+  padding: 0 16px;
 }
 
 #window.empty {
@@ -83,91 +76,90 @@ window#waybar {
 }
 
 /* =========================================================
-   WIFI
+   RECORDER
+   ========================================================= */
+
+#custom-recorder {
+  color: #6c7086;
+  padding: 0 8px;
+  margin: 4px 4px 4px 8px;
+  border-radius: 5px;
+}
+
+#custom-recorder:hover {
+  color: #cba6f7;
+  background: rgba(203, 166, 247, 0.08);
+}
+
+#custom-recorder.recording {
+  color: #f38ba8;
+  background: rgba(243, 139, 168, 0.10);
+}
+
+/* =========================================================
+   WIFI — Icon only
    ========================================================= */
 
 #custom-wifi {
   color: #a6e3a1;
-
-  padding: 0 12px;
-  margin: 4px 0 4px 8px;
-
-  background: rgba(166, 227, 161, 0.10);
-  border: 1px solid rgba(166, 227, 161, 0.30);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
+  padding: 0 8px;
+  margin: 4px 2px;
+  border-radius: 5px;
 }
 
 #custom-wifi:hover {
-  color: #c8f7c2;
+  background: rgba(166, 227, 161, 0.10);
+}
 
-  background: rgba(166, 227, 161, 0.20);
-  border-color: rgba(166, 227, 161, 0.55);
+#custom-wifi.disconnected {
+  color: #45475a;
 }
 
 /* =========================================================
-   BATTERY
+   CLOCK
+   ========================================================= */
+
+#clock {
+  color: #cdd6f4;
+  font-weight: 500;
+  padding: 0 10px;
+  margin: 4px 2px;
+  border-radius: 5px;
+}
+
+#clock:hover {
+  background: rgba(203, 166, 247, 0.08);
+}
+
+/* =========================================================
+   BATTERY — Icon only
    ========================================================= */
 
 #custom-battery {
   color: #89dceb;
-
-  padding: 0 12px;
-  margin: 4px 0 4px 8px;
-
-  background: rgba(137, 220, 235, 0.10);
-  border: 1px solid rgba(137, 220, 235, 0.30);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
+  padding: 0 8px;
+  margin: 4px 2px;
+  border-radius: 5px;
 }
 
 #custom-battery:hover {
-  color: #b8f1ff;
-
-  background: rgba(137, 220, 235, 0.20);
-  border-color: rgba(137, 220, 235, 0.55);
+  background: rgba(137, 220, 235, 0.08);
 }
 
-/* Charging */
 #custom-battery.charging {
   color: #a6e3a1;
-
-  background: rgba(166, 227, 161, 0.10);
-  border-color: rgba(166, 227, 161, 0.35);
 }
 
-/* Fully charged */
 #custom-battery.full {
   color: #a6e3a1;
-
-  background: rgba(166, 227, 161, 0.08);
-  border-color: rgba(166, 227, 161, 0.30);
 }
 
-/* Battery warning */
 #custom-battery.warning {
   color: #f9e2af;
-
-  background: rgba(249, 226, 175, 0.10);
-  border-color: rgba(249, 226, 175, 0.35);
 }
 
-/* Battery critical */
 #custom-battery.critical {
   color: #f38ba8;
-
-  background: rgba(243, 139, 168, 0.12);
-  border-color: rgba(243, 139, 168, 0.40);
-}
-
-/* Unknown */
-#custom-battery.unknown {
-  color: #7f849c;
-
-  background: rgba(127, 132, 156, 0.08);
-  border-color: rgba(127, 132, 156, 0.20);
 }
 
 /* =========================================================
@@ -176,22 +168,13 @@ window#waybar {
 
 #custom-volume {
   color: #cba6f7;
-
-  padding: 0 12px;
-  margin: 4px 4px 4px 0;
-
-  background: rgba(203, 166, 247, 0.10);
-  border: 1px solid rgba(203, 166, 247, 0.30);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
+  padding: 0 8px;
+  margin: 4px 2px;
+  border-radius: 5px;
 }
 
 #custom-volume:hover {
-  color: #eadcff;
-
-  background: rgba(203, 166, 247, 0.20);
-  border-color: rgba(203, 166, 247, 0.55);
+  background: rgba(203, 166, 247, 0.08);
 }
 
 /* =========================================================
@@ -200,102 +183,28 @@ window#waybar {
 
 #custom-system {
   color: #f38ba8;
-
-  padding: 0 12px;
-  margin: 4px 4px 4px 0;
-
-  background: rgba(243, 139, 168, 0.10);
-  border: 1px solid rgba(243, 139, 168, 0.30);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
+  padding: 0 8px;
+  margin: 4px 8px 4px 2px;
+  border-radius: 5px;
 }
 
 #custom-system:hover {
-  color: #ffb3c7;
-
-  background: rgba(243, 139, 168, 0.20);
-  border-color: rgba(243, 139, 168, 0.55);
+  background: rgba(243, 139, 168, 0.08);
 }
 
 /* =========================================================
-   RECORDER
-   ========================================================= */
-
-#custom-recorder {
-  color: #9399b2;
-
-  padding: 0 12px;
-  margin: 4px 4px 4px 0;
-
-  background: rgba(147, 153, 178, 0.08);
-  border: 1px solid rgba(147, 153, 178, 0.20);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
-}
-
-#custom-recorder:hover {
-  color: #cba6f7;
-
-  background: rgba(203, 166, 247, 0.12);
-  border-color: rgba(203, 166, 247, 0.30);
-}
-
-#custom-recorder.recording {
-  color: #f38ba8;
-
-  background: rgba(243, 139, 168, 0.12);
-  border: 1px solid rgba(243, 139, 168, 0.35);
-}
-
-#custom-recorder.recording:hover {
-  color: #ffb3c7;
-
-  background: rgba(243, 139, 168, 0.20);
-  border-color: rgba(243, 139, 168, 0.55);
-}
-
-/* =========================================================
-   CLOCK
-   ========================================================= */
-
-#clock {
-  color: #cba6f7;
-
-  font-weight: bold;
-
-  padding: 0 12px;
-  margin: 4px 0;
-
-  background: rgba(203, 166, 247, 0.10);
-  border: 1px solid rgba(203, 166, 247, 0.30);
-  border-radius: 8px;
-
-  transition: all 200ms ease;
-}
-
-#clock:hover {
-  color: #eadcff;
-
-  background: rgba(203, 166, 247, 0.20);
-  border-color: rgba(203, 166, 247, 0.55);
-}
-
-/* =========================================================
-   TOOLTIP
+   TOOLTIP — Compact & Clean
    ========================================================= */
 
 tooltip {
-  background: rgba(5, 5, 8, 0.92);
+  background: rgba(17, 17, 27, 0.95);
   color: #cdd6f4;
-
-  border: 1px solid rgba(203, 166, 247, 0.30);
+  border: 1px solid rgba(88, 91, 112, 0.30);
   border-radius: 8px;
-
-  padding: 8px 10px;
+  padding: 6px 10px;
 }
 
 tooltip label {
-  color: #cdd6f4;
+  color: #bac2de;
+  font-size: 11px;
 }

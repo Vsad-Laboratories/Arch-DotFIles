@@ -2,7 +2,7 @@
 // Gaps, column widths, struts
 
 layout {
-    gaps 12
+    gaps 8
     center-focused-column "on-overflow"
 
     preset-column-widths {
