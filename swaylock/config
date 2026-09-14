@@ -7,21 +7,26 @@ scaling-type=fill
 # Appearance
 color=000000
 font=Maple Mono NF
-font-size=32
+font-size=28
+
+# Indicator Position — bottom center
+indicator-x-position=50%
+indicator-y-position=80%
 
 # Ring
 ring-color=333333
 ring-ver-color=5fff87
 ring-wrong-color=ff5f5f
 ring-clear-color=ffff87
-ring-radius=90
-ring-thickness=8
+ring-radius=60
+ring-thickness=6
 
 # Text
 text-color=ffffff
 text-ver-color=5fff87
 text-wrong-color=ff5f5f
 text-clear-color=ffff87
+text-size=20
 
 # Key
 key-hl-color=5fff87
@@ -34,10 +39,10 @@ line-wrong-color=000000
 line-clear-color=000000
 
 # Inside
-inside-color=111111
-inside-ver-color=111111
-inside-wrong-color=111111
-inside-clear-color=111111
+inside-color=111111ee
+inside-ver-color=111111ee
+inside-wrong-color=111111ee
+inside-clear-color=111111ee
 
 # Border
 border-color=222222
@@ -48,5 +53,6 @@ border-clear-color=ffff87
 # Behavior
 ignore-empty-password
 show-failed-attempts
-indicator-radius=90
-indicator-thickness=8
+indicator-radius=60
+indicator-thickness=6
+font-size=20
