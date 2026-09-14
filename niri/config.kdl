@@ -36,5 +36,4 @@ include "modules/startup.kdl"
 
 // ==================== UI ====================
 include "ui/appearance.kdl"
-include "ui/layout.kdl"
 include "ui/animations.kdl"
