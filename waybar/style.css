@@ -1,12 +1,7 @@
 /*
  * VSAD WAYBAR
- * VantaBlack / Aerospace Interface
- * Transparent • Minimal • Clean
+ * Pure Black + Glassmorphism
  */
-
-/* =========================================================
-   GLOBAL
-   ========================================================= */
 
 * {
   font-family: "Maple Mono NF", "JetBrainsMono Nerd Font", monospace;
@@ -14,20 +9,15 @@
   min-height: 0;
 }
 
-/* =========================================================
-   WAYBAR
-   ========================================================= */
-
 window#waybar {
-  background: rgba(5, 5, 8, 0.60);
-  color: #cdd6f4;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
   border: none;
+  backdrop-filter: 20px;
+  -gtk-icon-effect: blur;
 }
 
-/* =========================================================
-   WORKSPACES — Compact dots
-   ========================================================= */
-
+/* Workspaces */
 #workspaces {
   margin: 4px 0 4px 6px;
 }
@@ -36,37 +26,33 @@ window#waybar {
   padding: 2px 6px;
   margin: 0 1px;
   min-width: 18px;
-
-  color: #45475a;
+  color: #555555;
   background: transparent;
   border: none;
   border-radius: 4px;
-
   font-size: 11px;
 }
 
 #workspaces button:hover {
-  color: #cba6f7;
-  background: rgba(203, 166, 247, 0.10);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 #workspaces button.active {
-  color: #ffffff;
-  background: rgba(203, 166, 247, 0.15);
+  color: #000000;
+  background: #ffffff;
   font-weight: bold;
+  border-radius: 4px;
 }
 
 #workspaces button.urgent {
-  color: #f38ba8;
-  background: rgba(243, 139, 168, 0.15);
+  color: #000000;
+  background: #ff5f5f;
 }
 
-/* =========================================================
-   WINDOW TITLE — Centered
-   ========================================================= */
-
+/* Window Title */
 #window {
-  color: #6c7086;
+  color: #888888;
   font-style: italic;
   padding: 0 16px;
 }
@@ -75,136 +61,112 @@ window#waybar {
   color: transparent;
 }
 
-/* =========================================================
-   RECORDER
-   ========================================================= */
-
+/* Recorder */
 #custom-recorder {
-  color: #6c7086;
+  color: #666666;
   padding: 0 8px;
   margin: 4px 4px 4px 8px;
   border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 #custom-recorder:hover {
-  color: #cba6f7;
-  background: rgba(203, 166, 247, 0.08);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 #custom-recorder.recording {
-  color: #f38ba8;
-  background: rgba(243, 139, 168, 0.10);
+  color: #ff5f5f;
+  background: rgba(255, 95, 95, 0.12);
 }
 
-/* =========================================================
-   WIFI — Icon only
-   ========================================================= */
-
+/* WiFi */
 #custom-wifi {
-  color: #a6e3a1;
+  color: #5fff87;
   padding: 0 8px;
   margin: 4px 2px;
   border-radius: 5px;
+  background: rgba(95, 255, 135, 0.06);
 }
 
 #custom-wifi:hover {
-  background: rgba(166, 227, 161, 0.10);
+  background: rgba(95, 255, 135, 0.12);
 }
 
 #custom-wifi.disconnected {
-  color: #45475a;
+  color: #444444;
+  background: transparent;
 }
 
-/* =========================================================
-   CLOCK
-   ========================================================= */
-
+/* Clock */
 #clock {
-  color: #cdd6f4;
+  color: #ffffff;
   font-weight: 500;
   padding: 0 10px;
   margin: 4px 2px;
   border-radius: 5px;
+  background: rgba(255, 255, 255, 0.04);
 }
 
 #clock:hover {
-  background: rgba(203, 166, 247, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* =========================================================
-   BATTERY — Icon only
-   ========================================================= */
-
+/* Battery */
 #custom-battery {
-  color: #89dceb;
+  color: #5fff87;
   padding: 0 8px;
   margin: 4px 2px;
   border-radius: 5px;
+  background: rgba(95, 255, 135, 0.06);
 }
 
 #custom-battery:hover {
-  background: rgba(137, 220, 235, 0.08);
+  background: rgba(95, 255, 135, 0.12);
 }
 
-#custom-battery.charging {
-  color: #a6e3a1;
-}
+#custom-battery.charging { color: #5fff87; }
+#custom-battery.full { color: #5fff87; }
+#custom-battery.warning { color: #ffff87; background: rgba(255, 255, 135, 0.06); }
+#custom-battery.critical { color: #ff5f5f; background: rgba(255, 95, 95, 0.06); }
 
-#custom-battery.full {
-  color: #a6e3a1;
-}
-
-#custom-battery.warning {
-  color: #f9e2af;
-}
-
-#custom-battery.critical {
-  color: #f38ba8;
-}
-
-/* =========================================================
-   VOLUME
-   ========================================================= */
-
+/* Volume */
 #custom-volume {
-  color: #cba6f7;
+  color: #df87ff;
   padding: 0 8px;
   margin: 4px 2px;
   border-radius: 5px;
+  background: rgba(223, 135, 255, 0.06);
 }
 
 #custom-volume:hover {
-  background: rgba(203, 166, 247, 0.08);
+  background: rgba(223, 135, 255, 0.12);
 }
 
-/* =========================================================
-   SYSTEM
-   ========================================================= */
-
+/* System */
 #custom-system {
-  color: #f38ba8;
+  color: #ff5f5f;
   padding: 0 8px;
   margin: 4px 8px 4px 2px;
   border-radius: 5px;
+  background: rgba(255, 95, 95, 0.06);
 }
 
 #custom-system:hover {
-  background: rgba(243, 139, 168, 0.08);
+  background: rgba(255, 95, 95, 0.12);
 }
 
-/* =========================================================
-   TOOLTIP — Compact & Clean
-   ========================================================= */
-
+/* Tooltip */
 tooltip {
-  background: rgba(17, 17, 27, 0.95);
-  color: #cdd6f4;
-  border: 1px solid rgba(88, 91, 112, 0.30);
+  background: rgba(10, 10, 10, 0.92);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 8px;
   padding: 6px 10px;
+  backdrop-filter: 20px;
 }
 
 tooltip label {
-  color: #bac2de;
+  color: #cccccc;
   font-size: 11px;
 }
