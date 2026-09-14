@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# waybar-record-status — Waybar custom module for VSAD recording state
+# Outputs JSON with idle (▶) or recording (■ MM:SS) state
+
+PID_FILE="/tmp/vsad-record.pid"
+
+if [ -f "$PID_FILE" ]; then
+    PID=$(cat "$PID_FILE")
+    if kill -0 "$PID" 2>/dev/null; then
+        ELAPSED=$(ps -o etimes= -p "$PID" 2>/dev/null | tr -d ' ')
+        if [[ -n "$ELAPSED" && "$ELAPSED" =~ ^[0-9]+$ ]]; then
+            MINS=$((ELAPSED / 60))
+            SECS=$((ELAPSED % 60))
+            printf '{"text":"■ %02d:%02d","class":"recording","tooltip":"Click to stop recording"}\n' "$MINS" "$SECS"
+            exit 0
+        fi
+    fi
+    rm -f "$PID_FILE"
+fi
+
+printf '{"text":"▶","class":"idle","tooltip":"Click to start recording"}\n'

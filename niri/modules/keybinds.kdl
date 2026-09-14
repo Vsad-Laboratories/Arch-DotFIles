@@ -21,6 +21,9 @@ binds {
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
+    // ==================== Recording ====================
+    Mod+G { spawn "vsad-record"; }
+
     // ==================== Overview ====================
     Mod+O repeat=false { toggle-overview; }
 

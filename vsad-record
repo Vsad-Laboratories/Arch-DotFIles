@@ -1,0 +1,104 @@
+#!/usr/bin/env bash
+# vsad-record — VSAD Screen Recorder for Niri/Wayland
+# MOD+G toggle: recording state indicator in Waybar
+
+set -euo pipefail
+
+OUTDIR="$HOME/Videos/Captures"
+PID_FILE="/tmp/vsad-record.pid"
+WAYBAR_HEIGHT=32
+GAPS=12
+
+mkdir -p "$OUTDIR"
+
+notify() {
+    command -v dunstify >/dev/null 2>&1 && dunstify -u low "$@" || notify-send -u low "$@"
+}
+
+signal_waybar() {
+    pkill -SIGRTMIN+1 waybar 2>/dev/null || true
+}
+
+is_recording() {
+    [ -f "$PID_FILE" ] || return 1
+    local pid
+    pid=$(cat "$PID_FILE")
+    if kill -0 "$pid" 2>/dev/null; then
+        return 0
+    else
+        rm -f "$PID_FILE"
+        return 1
+    fi
+}
+
+stop_recording() {
+    local pid
+    pid=$(cat "$PID_FILE" 2>/dev/null) || return 1
+    if ! kill -0 "$pid" 2>/dev/null; then
+        rm -f "$PID_FILE"
+        return 1
+    fi
+    kill -INT "$pid" 2>/dev/null
+    local waited=0
+    while kill -0 "$pid" 2>/dev/null && [ "$waited" -lt 10 ]; do
+        sleep 0.1
+        waited=$((waited + 1))
+    done
+    kill -0 "$pid" 2>/dev/null && kill -TERM "$pid" 2>/dev/null
+    rm -f "$PID_FILE"
+    notify "Recording Stopped" "Saved to ~/Videos/Captures/" -t 3000
+    signal_waybar
+}
+
+get_focused_geometry() {
+    local win
+    win=$(niri msg --json focused-window 2>/dev/null) || { echo ""; return; }
+    [[ "$win" == "null" || -z "$win" ]] && { echo ""; return; }
+    local w h
+    w=$(echo "$win" | jq -r '.layout.window_size[0] // .layout.tile_size[0]')
+    h=$(echo "$win" | jq -r '.layout.window_size[1] // .layout.tile_size[1]')
+    [[ -z "$w" || "$w" == "null" || "$w" == "0" ]] && { echo ""; return; }
+    echo "$GAPS,$((WAYBAR_HEIGHT + GAPS)) ${w}x${h}"
+}
+
+check_deps() {
+    local missing=()
+    command -v wf-recorder >/dev/null || missing+=("wf-recorder")
+    command -v jq >/dev/null || missing+=("jq")
+    if [ ${#missing[@]} -gt 0 ]; then
+        notify "Missing: ${missing[*]}"
+        exit 1
+    fi
+}
+
+# Toggle: stop if already recording
+if is_recording; then
+    stop_recording
+    exit 0
+fi
+
+check_deps
+
+# Default: record focused window (MOD+G simple toggle)
+GEOMETRY=$(get_focused_geometry)
+
+TIMESTAMP=$(date +'%Y-%m-%d_%H-%M-%S')
+OUTPUT="$OUTDIR/recording_${TIMESTAMP}.mp4"
+
+ARGS=(-f "$OUTPUT" -c h264_vaapi -d /dev/dri/renderD128)
+[[ -n "$GEOMETRY" ]] && ARGS+=(-g "$GEOMETRY")
+
+wf-recorder "${ARGS[@]}" &
+RECORDER_PID=$!
+echo "$RECORDER_PID" > "$PID_FILE"
+disown "$RECORDER_PID"
+
+sleep 0.2
+if kill -0 "$RECORDER_PID" 2>/dev/null; then
+    notify "Recording Started" "Press MOD+G to stop" -t 2000
+    signal_waybar
+else
+    rm -f "$PID_FILE"
+    notify "Recording Failed" "Could not start wf-recorder" -t 3000
+    exit 1
+fi
