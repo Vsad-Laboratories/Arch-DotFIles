@@ -9,6 +9,7 @@ binds {
     // ==================== Applications ====================
     Mod+Return { spawn "kitty"; }
     Mod+Space { spawn "fuzzel"; }
+    Mod+Period { spawn-sh "fuzzel --dmenu -p 'Emoji:' < ~/.cache/emojis | cut -d' ' -f1 | wl-copy"; }
 
     // ==================== VSAD Commands ====================
     Mod+Alt+1 { spawn-sh "~/.local/bin/vsad-appcenter"; }
@@ -91,10 +92,10 @@ binds {
     Mod+Shift+I         { move-workspace-up; }
 
     // ==================== Workspace Scroll ====================
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     // ==================== Column Scroll ====================
     Mod+WheelScrollRight      { focus-column-right; }
@@ -132,7 +133,6 @@ binds {
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
     Mod+Comma  { consume-window-into-column; }
-    Mod+Period { expel-window-from-column; }
 
     // ==================== Column Width ====================
     Mod+R { switch-preset-column-width; }

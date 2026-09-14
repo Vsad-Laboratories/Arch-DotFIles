@@ -11,12 +11,12 @@ window-rule {
 // No open-on-workspace for kitty — opens on current workspace
 
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id=r"firefox$" title="^Picture-in-Picture$"
     open-floating true
 }
 
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id=r"^org\.keepassxc\.KeePassXC$"
+    match app-id=r"^org\.gnome\.World\.Secrets$"
     block-out-from "screen-capture"
 }

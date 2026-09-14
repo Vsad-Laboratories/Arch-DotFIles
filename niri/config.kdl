@@ -5,7 +5,7 @@
 // Do not put detailed configuration here — use the modules/ and ui/ directories.
 // ==================== Global Settings ====================
 
-// Named workspaces (required for open-on-workspace window rules)
+// Named workspaces
 workspace "1"
 workspace "2"
 workspace "3"
@@ -23,6 +23,11 @@ hotkey-overlay {
     skip-at-startup
 }
 
+// Cursor size
+cursor {
+    xcursor-size 24
+}
+
 // ==================== Modules ====================
 include "modules/input.kdl"
 include "modules/keybinds.kdl"
@@ -33,5 +38,3 @@ include "modules/startup.kdl"
 include "ui/appearance.kdl"
 include "ui/layout.kdl"
 include "ui/animations.kdl"
-
-
