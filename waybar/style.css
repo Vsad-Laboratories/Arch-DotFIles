@@ -1,6 +1,6 @@
 /*
  * VSAD WAYBAR
- * Pure Black + Glassmorphism
+ * Pure Black + Glassmorphism (GTK3 compatible)
  */
 
 * {
@@ -10,11 +10,9 @@
 }
 
 window#waybar {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   color: #ffffff;
   border: none;
-  backdrop-filter: 20px;
-  -gtk-icon-effect: blur;
 }
 
 /* Workspaces */
@@ -42,7 +40,6 @@ window#waybar {
   color: #000000;
   background: #ffffff;
   font-weight: bold;
-  border-radius: 4px;
 }
 
 #workspaces button.urgent {
@@ -163,7 +160,6 @@ tooltip {
   border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 8px;
   padding: 6px 10px;
-  backdrop-filter: 20px;
 }
 
 tooltip label {
