@@ -1,0 +1,26 @@
+#!/bin/bash
+# vsad-power-menu — Session menu via fuzzel
+# MOD+X: shutdown, reboot, sleep, lock, logout
+
+CHOSEN=$(printf "Lock\nSleep\nLogout\nReboot\nShutdown" | \
+    fuzzel --dmenu --prompt="Session → " --width=20 --lines=6 2>/dev/null) || exit 0
+
+[[ -z "$CHOSEN" ]] && exit 0
+
+case "$CHOSEN" in
+    "Lock")
+        swaylock
+        ;;
+    "Sleep")
+        systemctl suspend
+        ;;
+    "Logout")
+        niri msg action quit
+        ;;
+    "Reboot")
+        systemctl reboot
+        ;;
+    "Shutdown")
+        systemctl poweroff
+        ;;
+esac
