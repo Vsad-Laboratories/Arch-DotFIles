@@ -161,7 +161,6 @@ binds {
 
     // ==================== Floating ====================
     Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // ==================== Tabs ====================
     Mod+W { toggle-column-tabbed-display; }
@@ -182,6 +181,9 @@ binds {
 
     // ==================== Wallpaper ====================
     Mod+P { spawn "~/.config/waybar/scripts/wallpaper-selector.sh"; }
+
+    // ==================== Clipboard History ====================
+    Mod+Shift+V { spawn-sh "cliphist list | fuzzel --dmenu -p 'Clipboard:' -w 60 -l 15 | cliphist decode | wl-copy"; }
 
     // ==================== Session ====================
     Mod+Shift+E { quit; }

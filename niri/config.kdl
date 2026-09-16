@@ -7,6 +7,8 @@
 
 // Named workspaces
 workspace "1"
+
+environment
 workspace "2"
 workspace "3"
 workspace "4"

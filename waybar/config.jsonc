@@ -32,10 +32,10 @@
   },
 
   "clock": {
-    "format": " {:%B %d, %Y}",
-    "format-alt": " {:%H:%M:%S}",
-    "tooltip-format": "<tt>{:%A, %B %d, %Y}</tt>",
-    "interval": 60
+    "format": " {:%H:%M}",
+    "format-alt": " {:%B %d, %Y}",
+    "tooltip-format": "{:%A, %B %d, %Y}",
+    "interval": 1
   },
 
   "custom/wifi": {
